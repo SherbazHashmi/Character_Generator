@@ -11,6 +11,10 @@ namespace Roguelike
     {
         private Random _randomiser;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Roguelike.RandomList`1"/> class.
+        /// </summary>
+
         public RandomList()
         {
             _randomiser = new Random();
@@ -26,6 +30,7 @@ namespace Roguelike
         /// Roll generates random element from collection
         /// </summary>
         /// <returns> Random Element From Collection</returns>
+
         public T Roll() {
             int index = _randomiser.Next(Count);
             return this[index];
@@ -66,12 +71,23 @@ namespace Roguelike
             }
         }
 
+        /// <summary>
+        /// Adds all elements from input to List.
+        /// </summary>
+        /// <param name="elements">Elements.</param>
+        /// 
         public void AddAll (T[] elements) {
             foreach ( T element in elements) {
                 this.Add(element);
             }
         }
 
+
+        /// <summary>
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Roguelike.RandomList`1"/>.
+        /// </summary>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Roguelike.RandomList`1"/>.</returns>
+       
         public override string ToString()
         {
             String output = "";

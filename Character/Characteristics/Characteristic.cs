@@ -5,9 +5,19 @@ namespace Roguelike
     {
         public String Description;
 
+        /// <summary>
+        /// Sets the description.
+        /// </summary>
+        /// <param name="description">Description.</param>
+
         public void SetDescription(String description) {
             Description = description;
         }
+
+        /// <summary>
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Roguelike.Characteristic"/>.
+        /// </summary>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Roguelike.Characteristic"/>.</returns>
 
         public override string ToString()
         {

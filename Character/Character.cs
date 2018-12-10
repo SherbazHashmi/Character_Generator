@@ -26,23 +26,38 @@ namespace Roguelike
             InitialiseCharacterBaseAttributes(name);
         }
 
+        /// <summary>
+        /// Generates names
+        /// </summary>
+        /// <returns>A name</returns>
         public String NameGenerator() { 
             RandomList<String> prefixes =  new RandomList<String> { "lo", "te", "soa", "co"};
             RandomList<String> suffixes = new RandomList<String> { "l", "as", "ud"};
             return prefixes.Roll() + suffixes.Roll();
         }
 
+        /// <summary>
+        /// Initialises the characteristics.
+        /// </summary>
         public void InitialiseCharacteristics () {
             CharacteristicGenerator characteristicGenerator = new CharacteristicGenerator();
             _characteristics = characteristicGenerator.Generate();
         }
 
+        /// <summary>
+        /// Initialises the character base attributes.
+        /// </summary>
+        /// <param name="name">Name.</param>
         public void InitialiseCharacterBaseAttributes(String name) {
             Name = name;
             Random r = new Random();
             Age = r.Next(70) + 18;
         }
 
+        /// <summary>
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Roguelike.Character"/>.
+        /// </summary>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Roguelike.Character"/>.</returns>
         public override string ToString()
         {
             if (Age < 30)
