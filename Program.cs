@@ -3,6 +3,9 @@ using System.IO;
 
 namespace Roguelike
 {
+    /// <summary>
+    /// @author : Sherbaz Hashmi
+    /// </summary>
     class Program
     {
         /// <summary>

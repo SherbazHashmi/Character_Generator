@@ -3,7 +3,6 @@ namespace Roguelike
 {
     public class Character
     {
-        // Declaring all global variables!
         public String Name;
         public RandomList<Characteristic> _characteristics;
         public int Age;
