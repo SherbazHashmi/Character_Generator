@@ -5,4 +5,12 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Family.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Character\" />
+    <Folder Include="Utiilities\" />
+    <Folder Include="Character\Characteristics\" />
+  </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sherbaz_Roguelike
+namespace Roguelike
 {
     class Program
     {
