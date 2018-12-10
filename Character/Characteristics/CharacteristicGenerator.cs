@@ -14,7 +14,7 @@ namespace Roguelike
         }
 
         public RandomList<Characteristic> Generate () {
-            return this.RollList(3);
+            return this.RollList(_numberOfCharacteristics);
         }
     }
 }

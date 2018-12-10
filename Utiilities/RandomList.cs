@@ -27,7 +27,7 @@ namespace Roguelike
         /// </summary>
         /// <returns> Random Element From Collection</returns>
         public T Roll() {
-            int index = _randomiser.Next();
+            int index = _randomiser.Next(Count);
             return this[index];
         }
 
@@ -70,6 +70,20 @@ namespace Roguelike
             foreach ( T element in elements) {
                 this.Add(element);
             }
+        }
+
+        public override string ToString()
+        {
+            String output = "";
+            foreach (var element in this)
+            {
+                if(output == "") {
+                    output = element.ToString();
+                } else {
+                    output = output + "\n" + element;
+                }
+            }
+            return output;
         }
 
     }
