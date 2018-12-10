@@ -13,7 +13,7 @@ namespace Roguelike
 
         public RandomList()
         {
-            _randomiser = new Random(Count);
+            _randomiser = new Random();
         }
 
 
