@@ -4,8 +4,7 @@ namespace Roguelike
 {
     /// <summary>
     /// Random List is a collection that extends List, it implements 
-    /// RNG capabilities to the list collection. It also inherits
-    /// clonable so it can be copied by value.
+    /// RNG capabilities to the list collection.
     /// </summary>
     public class RandomList<T> : List<T>, ICloneable
     {
@@ -69,6 +68,24 @@ namespace Roguelike
                 }
                 return generatedList;
             }
+        }
+
+        /// <summary>
+        /// Roll Generates Random Element From Collection and Will Remove if Collection Size is Greater Than 1 
+        /// </summary>
+        /// <returns>Element From Collection</returns>
+        public T RollAndRemove()
+        {
+            int index = _randomiser.Next(Count);
+            T response = this[index];
+
+            if (Count > 1)
+            {
+                Remove(response);
+            }
+
+            return response;
+
         }
 
         /// <summary>
