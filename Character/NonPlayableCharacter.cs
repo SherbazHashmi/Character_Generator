@@ -26,6 +26,16 @@ namespace Roguelike
             });
         }
 
+
+        public NonPlayableCharacter(NonPlayableCharacter nonPlayableCharacter)
+        {
+            Name = nonPlayableCharacter.Name;
+            Age = nonPlayableCharacter.Age;
+            _characteristics = nonPlayableCharacter._characteristics;
+            Inventory = nonPlayableCharacter.Inventory;
+        }
+
+
         public override string ToString()
         {
             return Name + " ";
@@ -34,7 +44,7 @@ namespace Roguelike
 
         public virtual string Reveal()
         {
-            return Name + " is in fact the killer!";
+            return Name + " is  not the killer...";
         }
 
         public void EquipItem(Item item)
@@ -50,10 +60,10 @@ namespace Roguelike
             {
                 case ConversationType.QUESTION:
                     responses = Responses[ConversationType.QUESTION];
-                    return responses.Roll();
+                    return responses.RollAndRemove();
                 case ConversationType.INVENTORY:
                     responses = Responses[ConversationType.INVENTORY];
-                    return responses.Roll();
+                    return responses.RollAndRemove();
                 default:
                     return null;
             }

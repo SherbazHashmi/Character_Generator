@@ -2,6 +2,6 @@ namespace Roguelike
 {
     public enum ConversationType
     {
-        QUESTION, INVENTORY
+        QUESTION, INVENTORY, CONFESSION
     }
 }

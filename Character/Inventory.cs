@@ -5,6 +5,14 @@ namespace Roguelike
 {
     public class Inventory : List<Item>
     {
+        public Inventory(List<Item> items)
+        {
+            foreach (var item in items)
+            {
+                Add(item);
+            }    
+        }
+        
         public override string ToString()
         {
             string output = "";

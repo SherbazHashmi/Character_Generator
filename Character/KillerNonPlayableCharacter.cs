@@ -5,12 +5,14 @@ namespace Roguelike
 {
     public class KillerNonPlayableCharacter : NonPlayableCharacter
     {
-        public KillerNonPlayableCharacter(Character character, Inventory inventory, Dictionary<ConversationType, RandomList<string>> responses) : base(character, inventory, responses)
+        public KillerNonPlayableCharacter(Character character, Inventory inventory, Dictionary<ConversationType, RandomList<String>> responses) : base(character, inventory, responses)
         {
-            Name = character.Name;
-            Age = character.Age;
-            _characteristics = character._characteristics;
-            Inventory = inventory;
+            // Removes an item to make sure all characters have the same number of items
+            Inventory.RemoveAt(0);
+        
+            // Add Killing Weapon
+            
+            Inventory.Add(new Item("Knife"));
 
             // Add Inventory Responses
             
@@ -22,10 +24,16 @@ namespace Roguelike
                 "I have :" + Inventory + ". And money ain't a problem."
             });
             
-            // Add Killing Weapon
             
+        }
+
+        public KillerNonPlayableCharacter(NonPlayableCharacter nonPlayableCharacter) : base(nonPlayableCharacter)
+        {
+            // Removes an item to make sure all characters have the same number of items
+            Inventory.RemoveAt(0);
             Inventory.Add(new Item("Knife"));
         }
+
 
         /// <summary>
         /// Reveal! 

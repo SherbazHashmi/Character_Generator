@@ -30,8 +30,8 @@ namespace Roguelike
         /// </summary>
         /// <returns>A name</returns>
         public String NameGenerator() { 
-            RandomList<String> prefixes =  new RandomList<String> { "lo", "te", "soa", "co"};
-            RandomList<String> suffixes = new RandomList<String> { "l", "as", "ud"};
+            RandomList<String> prefixes =  new RandomList<String> { "Sha", "Telo", "Sap", "Ca"};
+            RandomList<String> suffixes = new RandomList<String> { "lleot", "as", "ud"};
             return prefixes.Roll() + suffixes.Roll();
         }
 
