@@ -7,9 +7,18 @@ namespace Roguelike
         private Character _player;
         private RandomList<NonPlayableCharacter> _characters;
 
-        public TheRoom()
+        public TheRoom(Character player)
         {
-            
+            _player = player;
+            AddCharacters();
+            SelectKiller();
+        }
+        
+        
+        private void SelectKiller()
+        {
+            KillerNonPlayableCharacter killer = new KillerNonPlayableCharacter(_characters.RollAndRemove());
+            _characters.Add(killer);
         }
 
         private void AddCharacters()
@@ -18,7 +27,8 @@ namespace Roguelike
             {
                 // NPC 1: The Farmer
                 
-                new NonPlayableCharacter(new Character(),
+                new NonPlayableCharacter(
+                    new Character(), 
                     new Inventory(new List<Item>
                     {
                         new Item("Rag"),
@@ -35,8 +45,12 @@ namespace Roguelike
                             "Hey, I swear I didn't do nothing.. I just herd the sheep to sleep",
                             "I 'ain't done nothing, just a humble farmer",
                             "If you 'ain't interested in the berries I suggest you bring yer business somewhere else matey..."
+                        }}, {ConversationType.CONFESSION, new RandomList<string>
+                        {
+                            "",
+                            ""
                         }}
-                    }),
+                    }, "title"),
                 
                 // NPC 2: The Doctor
                 
@@ -56,8 +70,13 @@ namespace Roguelike
                             "You're looking pale... could be a case of scurvy. Might want to get it checked out",
                             "See me at the clinic if you need to buy any medicine",
                             "Better watch out for the flu season!"
+                        }}, 
+                        {ConversationType.CONFESSION, new RandomList<string>
+                        {
+                            "",
+                            ""
                         }}
-                    }),
+                    },"title"),
                 
                 // NPC 3: The Blacksmith
                 
@@ -77,8 +96,13 @@ namespace Roguelike
                             "Need anything forged? Well you're in trouble as this game doesn't have any forging",
                             "I do fancy jewelries and trinkets too, not just blades and shields",
                             "Gets pretty hot here down at the forge"
+                        }}, 
+                        {ConversationType.CONFESSION, new RandomList<string>
+                        {
+                            "",
+                            ""
                         }}
-                    }),
+                    },"title"),
                 
                 // NPC 4: The Innkeeper 
                 
@@ -98,8 +122,13 @@ namespace Roguelike
                             "Fancy a glass of mead? A slice of cake no not a cake a bowl of soup no no non on ono no a grilled venison nononono wait fancy a glass of mead? um... uh... some leak soup maybe? yeah.",
                             "We've got warm beds if you're looking.. wait if you're looking.. wait NO! We've got warm uh.. too much social for a day",
                             "You're not from around here are you?"
+                        }},
+                        {ConversationType.CONFESSION, new RandomList<string>
+                        {
+                            "",
+                            ""
                         }}
-                    }),
+                    },"title"),
                 
                 // NPC 5: The Seamstress
                 
@@ -119,8 +148,13 @@ namespace Roguelike
                             "Would you like a vest, a pretty dress for your partner perhaps?",
                             "Have you seen my pin-cushion anywhere?",
                             "Forgive me for being so distracted, I am not used to murders and all"
+                        }},
+                        {ConversationType.CONFESSION, new RandomList<string>
+                        {
+                            "",
+                            ""
                         }}
-                    }),
+                    },"title"),
                 
                 // NPC 6: The Bookkeeper
                 
@@ -146,7 +180,7 @@ namespace Roguelike
                             "",
                             ""
                         }}
-                    }),
+                    },"title"),
                         
                      
                 
@@ -175,7 +209,7 @@ namespace Roguelike
                             "I was minding my own business... one day he came to me and told me he'd kill me if I didn't get a job... so I killed him first"
                            }
                         }
-                    }),
+                    },"title"),
                 
                 
                 // NPC 8: The King
@@ -202,7 +236,7 @@ namespace Roguelike
                             "He wanted to wed my daughter the princess and I wouldn't have scum like him breed within our royal family!",
                             "He was a spy I tell you.. reconnaissance of another land. He would have killed me if I hadn't have killed him first!"
                         }}
-                    }),
+                    },"title"),
                 
                 // NPC 9: The Bartender
                 
@@ -229,7 +263,7 @@ namespace Roguelike
                              "I did in fact kill him, but he had it coming, he had been stealing my kegs for years"
                             }
                         }
-                    })
+                    },"title"),
                 
                 
                 
@@ -237,11 +271,7 @@ namespace Roguelike
             };
         }
 
-        private void SelectKiller()
-        {
-            KillerNonPlayableCharacter killer = new KillerNonPlayableCharacter(_characters.RollAndRemove());
-            _characters.Add(killer);
-        }
+
         
     }
 }

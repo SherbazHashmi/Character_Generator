@@ -8,7 +8,7 @@ namespace Roguelike
         public Inventory Inventory;
         public Dictionary<ConversationType, RandomList<String>> Responses;
         
-        public NonPlayableCharacter(Character character, Inventory inventory, Dictionary<ConversationType, RandomList<String>> responses)
+        public NonPlayableCharacter(Character character, Inventory inventory, Dictionary<ConversationType, RandomList<String>> responses, String title) 
         {
             Name = character.Name;
             Age = character.Age;
@@ -33,7 +33,10 @@ namespace Roguelike
             Age = nonPlayableCharacter.Age;
             _characteristics = nonPlayableCharacter._characteristics;
             Inventory = nonPlayableCharacter.Inventory;
+            Title = nonPlayableCharacter.Title;
         }
+
+    
 
 
         public override string ToString()

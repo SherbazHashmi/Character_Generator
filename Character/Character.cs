@@ -6,14 +6,16 @@ namespace Roguelike
         public String Name;
         public RandomList<Characteristic> _characteristics;
         public int Age;
+        public String Title;
+        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Roguelike.Character"/> class if name is given.
         /// </summary>
-        public Character(String name)
+        public Character(String name, String title)
         {
             InitialiseCharacteristics();
-            InitialiseCharacterBaseAttributes(name);
+            InitialiseCharacterBaseAttributes(name, title);
         }
 
         /// <summary>
@@ -22,8 +24,11 @@ namespace Roguelike
         public Character() {
             String name = NameGenerator();
             InitialiseCharacteristics();
-            InitialiseCharacterBaseAttributes(name);
+            InitialiseCharacterBaseAttributes(name, "The Detective");
         }
+        
+        
+        
 
         /// <summary>
         /// Generates names
@@ -47,8 +52,9 @@ namespace Roguelike
         /// Initialises the character base attributes.
         /// </summary>
         /// <param name="name">Name.</param>
-        public void InitialiseCharacterBaseAttributes(String name) {
+        public void InitialiseCharacterBaseAttributes(String name, String title) {
             Name = name;
+            Title = title;
             Random r = new Random();
             Age = r.Next(70) + 18;
         }

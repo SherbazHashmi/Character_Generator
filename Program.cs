@@ -36,7 +36,7 @@ namespace Roguelike
                 case "Y":
                     writer.WriteLine("Please provide a name");
                     input = reader.ReadLine();
-                    character = new Character(input);
+                    character = new Character(input,"The Detective");
                     break;
                 case "N":
                     character = new Character();
