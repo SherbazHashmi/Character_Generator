@@ -13,13 +13,20 @@ namespace Roguelike
             AddCharacters();
             SelectKiller();
         }
-        
-        
+
+
+        public override string ToString()
+        {
+            return _characters.ToString();
+        }
+
+
         private void SelectKiller()
         {
             KillerNonPlayableCharacter killer = new KillerNonPlayableCharacter(_characters.RollAndRemove());
             _characters.Add(killer);
         }
+        
 
         private void AddCharacters()
         {
@@ -47,10 +54,10 @@ namespace Roguelike
                             "If you 'ain't interested in the berries I suggest you bring yer business somewhere else matey..."
                         }}, {ConversationType.CONFESSION, new RandomList<string>
                         {
-                            "",
-                            ""
+                            "That money hungry pig was trying to steal my land, take all my crops. I wasn't about to let my livelihood be taken away!",
+                            "He stole my berries every year, when I approached him, we got into a fight and he slipped. I swear it was an accident..."
                         }}
-                    }, "title"),
+                    }, "The Farmer", 1),
                 
                 // NPC 2: The Doctor
                 
@@ -73,10 +80,10 @@ namespace Roguelike
                         }}, 
                         {ConversationType.CONFESSION, new RandomList<string>
                         {
-                            "",
-                            ""
+                            "It was just one little mistake.. one ounce too much. Surely can't be that bad... can it? I guess it was... It was me",
+                            "He said he wanted to serenade but I mistook it for cyanide... oops..."
                         }}
-                    },"title"),
+                    },"The Doctor", 2),
                 
                 // NPC 3: The Blacksmith
                 
@@ -99,10 +106,10 @@ namespace Roguelike
                         }}, 
                         {ConversationType.CONFESSION, new RandomList<string>
                         {
-                            "",
-                            ""
+                            "I swear, I aimed at the shield but it flung out of my hand and hit his head... ",
+                            "He stole my family heirloom, an emerald crested necklace from my great grandmother to The King, he deserved what he got."
                         }}
-                    },"title"),
+                    },"The Blacksmith", 3),
                 
                 // NPC 4: The Innkeeper 
                 
@@ -125,10 +132,10 @@ namespace Roguelike
                         }},
                         {ConversationType.CONFESSION, new RandomList<string>
                         {
-                            "",
-                            ""
+                            "He wanted to stay a night, what I didn't know was that it was in my wife's room... He had it coming.",
+                            "He threatened to defame my inn by spreading rumours that it was a whore house. I had to do what I did for my reputation"
                         }}
-                    },"title"),
+                    },"The Innkeeper", 4),
                 
                 // NPC 5: The Seamstress
                 
@@ -151,10 +158,10 @@ namespace Roguelike
                         }},
                         {ConversationType.CONFESSION, new RandomList<string>
                         {
-                            "",
-                            ""
+                            "I made him a jacket but forgot to take the needle out of the collar... Oops.",
+                            "He stole my notebook from me, all my designs, all my work he claimed as his own. Then he made off with the money"
                         }}
-                    },"title"),
+                    },"The Seamstress", 5),
                 
                 // NPC 6: The Bookkeeper
                 
@@ -177,10 +184,10 @@ namespace Roguelike
                         }},
                         {ConversationType.CONFESSION, new RandomList<string>
                         {
-                            "",
-                            ""
+                            "I was working in the library, putting books upon the highest shelf when one slipped.. and hit him on the head... ",
+                            "He wouldn't stay quiet so somebody had to shut him up!"
                         }}
-                    },"title"),
+                    },"The Bookkeeper", 6),
                         
                      
                 
@@ -209,7 +216,7 @@ namespace Roguelike
                             "I was minding my own business... one day he came to me and told me he'd kill me if I didn't get a job... so I killed him first"
                            }
                         }
-                    },"title"),
+                    },"The Begger", 7),
                 
                 
                 // NPC 8: The King
@@ -218,7 +225,7 @@ namespace Roguelike
                     new Inventory(new List<Item>
                     {
                         new Item("Ruby ring"),
-                        new Item("Jeweled locket"),
+                        new Item("Emerald necklace"),
                         new Item("Handkerchief"),
                         new Item("Rag")
                     }),
@@ -229,14 +236,14 @@ namespace Roguelike
                             "What are you? A peasant with a raggedy suit and a monocle parading around as a det-ec-tive... ",
                             "Let me out of here! I have more pressing matters to attend to",
                             "You smell like a peasant... have some perfume. Better than bathing",
-                            "You MUST LET ME OUT"
+                            "You MUST LET ME OUT, I just came here to receive a necklace"
                         }}, 
                         {ConversationType.CONFESSION, new RandomList<string>
                         {
                             "He wanted to wed my daughter the princess and I wouldn't have scum like him breed within our royal family!",
                             "He was a spy I tell you.. reconnaissance of another land. He would have killed me if I hadn't have killed him first!"
                         }}
-                    },"title"),
+                    },"The King", 8),
                 
                 // NPC 9: The Bartender
                 
@@ -263,7 +270,7 @@ namespace Roguelike
                              "I did in fact kill him, but he had it coming, he had been stealing my kegs for years"
                             }
                         }
-                    },"title"),
+                    },"The Bartender", 9)
                 
                 
                 

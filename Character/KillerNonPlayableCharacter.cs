@@ -5,7 +5,7 @@ namespace Roguelike
 {
     public class KillerNonPlayableCharacter : NonPlayableCharacter
     {
-        public KillerNonPlayableCharacter(Character character, Inventory inventory, Dictionary<ConversationType, RandomList<String>> responses, String title) : base(character, inventory, responses, title)
+        public KillerNonPlayableCharacter(Character character, Inventory inventory, Dictionary<ConversationType, RandomList<String>> responses, String title, int id) : base(character, inventory, responses, title, id)
         {
             // Removes an item to make sure all characters have the same number of items
             Inventory.RemoveAt(0);

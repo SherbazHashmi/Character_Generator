@@ -7,14 +7,19 @@ namespace Roguelike
     {
         public Inventory Inventory;
         public Dictionary<ConversationType, RandomList<String>> Responses;
+        public int ID;
         
-        public NonPlayableCharacter(Character character, Inventory inventory, Dictionary<ConversationType, RandomList<String>> responses, String title) 
+        public NonPlayableCharacter(Character character, Inventory inventory, Dictionary<ConversationType, RandomList<String>> responses, String title, int id) 
         {
             Name = character.Name;
             Age = character.Age;
             _characteristics = character._characteristics;
             Inventory = inventory;
+            Title = title;
+            ID = id;
 
+            Responses = new Dictionary<ConversationType, RandomList<string>>();
+            
             // Adding Inventory Responses
             
             Responses.Add(ConversationType.INVENTORY, new RandomList<string>
@@ -34,6 +39,7 @@ namespace Roguelike
             _characteristics = nonPlayableCharacter._characteristics;
             Inventory = nonPlayableCharacter.Inventory;
             Title = nonPlayableCharacter.Title;
+            ID = nonPlayableCharacter.ID;
         }
 
     
@@ -41,7 +47,7 @@ namespace Roguelike
 
         public override string ToString()
         {
-            return Name + " ";
+            return  "[" + ID + "] " + Name + " " + Title;
         }
         
 

@@ -67,14 +67,14 @@ namespace Roguelike
         {
             if (Age < 30)
             {
-                return "You woke up for the first time about " + Age + " years ago. You go by " + Name + ". By your ripe young age you have achieved so much. You have the following characteristics : " + _characteristics;
+                return "You woke up for the first time about " + Age + " years ago. You go by " + Name + " " + Title +". By your ripe young age you have achieved so much. You have the following characteristics the following " + _characteristics;
             }
             else if (Age < 60)
             {
-                return  "You woke up for the first time about " + Age + " years ago. You go by " + Name + ". By your middle young age you have achieved a lot. You have the following characteristics : " + _characteristics;
+                return  "You woke up for the first time about " + Age + " years ago. You go by " + Name + " " + Title +". By your middle young age you have achieved a lot. You have the following characteristics the following " + _characteristics;
             }
             else {
-                return "Creakkkkkk... Hear that creak? That was your hip... makes sense given you're " + Age + " years old.. You go by " + Name + ". While you may not be able to learn much more, it doesn't matter as you've mastered :" +_characteristics;
+                return "Creakkkkkk... Hear that creak? That was your hip... makes sense given you're " + Age + " years old.. You go by " + Name + " " + Title +". While you may not be able to learn much more, it doesn't matter as you've mastered the following " +_characteristics;
             }
 
         }

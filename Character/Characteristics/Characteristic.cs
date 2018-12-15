@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+
 namespace Roguelike
 {
     public class Characteristic
@@ -22,7 +24,23 @@ namespace Roguelike
         public override string ToString()
         {
             Type t = this.GetType();
-            return t + " : " + Description;
+            return CleanType(t.ToString()) + " : " + Description;
+        }
+
+        /// <summary>
+        /// Cleans the Content Before the . in the Type
+        /// </summary>
+        /// <returns></returns>
+        private String CleanType(String type)
+        {
+            if (type[0] == '.')
+            {
+                return type.Substring(1);
+            }
+            else
+            {
+                return CleanType(type.Substring(1));
+            }
         }
     }
 }

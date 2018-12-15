@@ -113,7 +113,7 @@ namespace Roguelike
                 if(output == "") {
                     output = element.ToString();
                 } else {
-                    output = output + "\n" + element;
+                    output = output + " | " + element;
                 }
             }
             return output;
