@@ -6,6 +6,7 @@ namespace Roguelike
     {
         private Character _player;
         private RandomList<NonPlayableCharacter> _characters;
+        public KillerNonPlayableCharacter _killer;
 
         public TheRoom(Character player)
         {
@@ -20,10 +21,27 @@ namespace Roguelike
             return _characters.ToString();
         }
 
+        public string Kill()
+        {
+            return _killer.Kill(_characters);
+        }
+        public NonPlayableCharacter SelectCharacter(int id)
+        {
+            foreach (var character in _characters)
+            {
+                if (character.ID == id)
+                {
+                    return character;
+                }
+            }
+
+            throw new Exception("Character With That ID Not Found");
+        }
 
         private void SelectKiller()
         {
             KillerNonPlayableCharacter killer = new KillerNonPlayableCharacter(_characters.RollAndRemove());
+            _killer = killer;
             _characters.Add(killer);
         }
         
@@ -47,7 +65,7 @@ namespace Roguelike
                     new Dictionary<ConversationType, RandomList<string>>
                     {
                         // Questions
-                        {ConversationType.QUESTION, new RandomList<String>{
+                        {ConversationType.QUESTION, new RandomList<string>{
                             "I am just a farmer, trying to sell the few berries I have..",
                             "Hey, I swear I didn't do nothing.. I just herd the sheep to sleep",
                             "I 'ain't done nothing, just a humble farmer",
@@ -72,7 +90,7 @@ namespace Roguelike
                     new Dictionary<ConversationType, RandomList<string>>
                     {
                         // Questions
-                        {ConversationType.QUESTION, new RandomList<String>{
+                        {ConversationType.QUESTION, new RandomList<string>{
                             "Oh my gosh! Did someone die? Can I see? *creepily stares*",
                             "You're looking pale... could be a case of scurvy. Might want to get it checked out",
                             "See me at the clinic if you need to buy any medicine",
@@ -98,7 +116,7 @@ namespace Roguelike
                     new Dictionary<ConversationType, RandomList<string>>
                     {
                         // Questions
-                        {ConversationType.QUESTION, new RandomList<String>{
+                        {ConversationType.QUESTION, new RandomList<string>{
                             "They say I look like Will from something.. I wonder what they mean...",
                             "Need anything forged? Well you're in trouble as this game doesn't have any forging",
                             "I do fancy jewelries and trinkets too, not just blades and shields",
@@ -124,7 +142,7 @@ namespace Roguelike
                     new Dictionary<ConversationType, RandomList<string>>
                     {
                         // Questions
-                        {ConversationType.QUESTION, new RandomList<String>{
+                        {ConversationType.QUESTION, new RandomList<string>{
                             "Need a place to stay? Get off that computer chair and do something then!",
                             "Fancy a glass of mead? A slice of cake no not a cake a bowl of soup no no non on ono no a grilled venison nononono wait fancy a glass of mead? um... uh... some leak soup maybe? yeah.",
                             "We've got warm beds if you're looking.. wait if you're looking.. wait NO! We've got warm uh.. too much social for a day",
@@ -150,7 +168,7 @@ namespace Roguelike
                     new Dictionary<ConversationType, RandomList<string>>
                     {
                         // Questions
-                        {ConversationType.QUESTION, new RandomList<String>{
+                        {ConversationType.QUESTION, new RandomList<string>{
                             "Hi! I am the seamstress and you seamstress-ed",
                             "Would you like a vest, a pretty dress for your partner perhaps?",
                             "Have you seen my pin-cushion anywhere?",
@@ -176,7 +194,7 @@ namespace Roguelike
                     new Dictionary<ConversationType, RandomList<string>>
                     {
                         // Questions
-                        {ConversationType.QUESTION, new RandomList<String>{
+                        {ConversationType.QUESTION, new RandomList<string>{
                             "Where have I kept my book on solving murders... just a minute... nope don't have it",
                             "You look like a person of great taste",
                             "Might I suggest a book for your grievances?",
@@ -205,7 +223,7 @@ namespace Roguelike
                     new Dictionary<ConversationType, RandomList<string>>
                     {
                         // Questions
-                        {ConversationType.QUESTION, new RandomList<String>{
+                        {ConversationType.QUESTION, new RandomList<string>{
                             "Have any clean rags?",
                             "Spare a coin for a poor man",
                             "I ate my last clean rag",
@@ -232,7 +250,7 @@ namespace Roguelike
                     new Dictionary<ConversationType, RandomList<string>>
                     {
                         // Questions
-                        {ConversationType.QUESTION, new RandomList<String>{
+                        {ConversationType.QUESTION, new RandomList<string>{
                             "What are you? A peasant with a raggedy suit and a monocle parading around as a det-ec-tive... ",
                             "Let me out of here! I have more pressing matters to attend to",
                             "You smell like a peasant... have some perfume. Better than bathing",
@@ -258,7 +276,7 @@ namespace Roguelike
                     new Dictionary<ConversationType, RandomList<string>>
                     {
                         // Questions
-                        {ConversationType.QUESTION, new RandomList<String>{
+                        {ConversationType.QUESTION, new RandomList<string>{
                             "Gosh, all drinks on me after this one",
                             "Yeah.. I am gonna need an extra glass after tonight",
                             "Never have I missed a limitless tap more than now..",

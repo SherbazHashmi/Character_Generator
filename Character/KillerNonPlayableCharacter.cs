@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace Roguelike
 {
@@ -8,20 +10,23 @@ namespace Roguelike
         public KillerNonPlayableCharacter(Character character, Inventory inventory, Dictionary<ConversationType, RandomList<String>> responses, String title, int id) : base(character, inventory, responses, title, id)
         {
             // Removes an item to make sure all characters have the same number of items
-            Inventory.RemoveAt(0);
+            //Inventory.RemoveAt(0);
         
             // Add Killing Weapon
-            
-            Inventory.Add(new Item("Knife"));
 
-            // Add Inventory Responses
+            Inventory.Add(new Item("Knife"));
             
+            // Add Inventory Responses
+
+            Responses.Remove(ConversationType.INVENTORY);
+            
+            String list = Inventory.ToString();
             Responses.Add(ConversationType.INVENTORY, new RandomList<string>
             {
-                "I am currently carrying the following: " + Inventory,
-                "In my bag I have: " + Inventory,
-                Inventory + " is all I have.",
-                "I have :" + Inventory + ". And money ain't a problem."
+                "I am currently carrying the following " + list,
+                "All I have is the following " + list,
+                list + " are all the items I posses right now.",
+                "I have " + list + ", and money ain't a problem."
             });
             
             
@@ -29,9 +34,24 @@ namespace Roguelike
 
         public KillerNonPlayableCharacter(NonPlayableCharacter nonPlayableCharacter) : base(nonPlayableCharacter)
         {
+           
+            Responses = nonPlayableCharacter.Responses;
+            Responses.Remove(ConversationType.INVENTORY);
+            Item knife = new Item("Knife");
+            Inventory.Add(knife);
+            
+            
+            Responses.Add(ConversationType.INVENTORY, new RandomList<string>
+            {
+                "I am currently carrying the following: " + Inventory,
+                "In my bag I have: " + Inventory,
+                Inventory+ " is all I have.",
+                "I have :" + Inventory + ". And money ain't a problem."
+            });
+         
             // Removes an item to make sure all characters have the same number of items
-            Inventory.RemoveAt(0);
-            Inventory.Add(new Item("Knife"));
+            //Inventory.RemoveAt(0);
+ 
         }
 
 
@@ -52,9 +72,9 @@ namespace Roguelike
         /// <param name="character"></param>
         /// <param name="characters"></param>
         /// <returns></returns>
-        public string Kill(List<Character> characters)
+        public string Kill(RandomList<NonPlayableCharacter> characters)
         {
-            Character killedCharacter;
+            NonPlayableCharacter killedCharacter;
             int index = characters.IndexOf(this);
             // Handling First Character Case
             if (index == 0)
@@ -66,8 +86,8 @@ namespace Roguelike
             {
                 // Finding Characters
                 
-                Character leftCharacter = characters[index - 1];
-                Character rightCharacter = characters[0];
+                NonPlayableCharacter leftCharacter = characters[index - 1];
+                NonPlayableCharacter rightCharacter = characters[0];
 
                 killedCharacter = KillCharacter(index - 1, 0, characters);
 
@@ -81,20 +101,20 @@ namespace Roguelike
         }
 
 
-        private Character KillCharacter(int leftCharacterIndex, int rightCharacterIndex, List<Character> characters)
+        private NonPlayableCharacter KillCharacter(int leftCharacterIndex, int rightCharacterIndex, RandomList<NonPlayableCharacter> characters)
         {
             // Finding Characters That It Can Kill (Left and Right)
                 
-            Character leftCharacter = characters[leftCharacterIndex];
-            Character rightCharacter = characters[rightCharacterIndex];
+            NonPlayableCharacter leftCharacter = characters[leftCharacterIndex];
+            NonPlayableCharacter rightCharacter = characters[rightCharacterIndex];
                 
             // Making List with Two Potential Characters
                 
-            RandomList<Character> possibleKillableCharacters = new RandomList<Character>{leftCharacter, rightCharacter};
+            RandomList<NonPlayableCharacter> possibleKillableCharacters = new RandomList<NonPlayableCharacter>{leftCharacter, rightCharacter};
 
             // Generating Character That Dies
                 
-            Character killedCharacter = possibleKillableCharacters.Roll();
+            NonPlayableCharacter killedCharacter = possibleKillableCharacters.Roll();
                 
             // Killing Character
                

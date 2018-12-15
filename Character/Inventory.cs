@@ -15,21 +15,27 @@ namespace Roguelike
         
         public override string ToString()
         {
-            string output = "";
-            for (int i = 0; i < Count - 1; i++)
+            String output = "";
+
+            foreach (var elem in this)
             {
-                if (i == Count - 1)
+                if (this[0].Name == elem.Name)
                 {
-                    output += this[i];
+                    output += elem + "";
+                }
+                else if (this[Count - 1].Name == elem.Name)
+                {
+                    output += " & a " + elem + "";
                 }
                 else
                 {
-                    output += this[i] + ", " + this[i];
+                    output += ", " + elem;
                 }
-                 
             }
 
             return output;
         }
+
+       
     }
 }

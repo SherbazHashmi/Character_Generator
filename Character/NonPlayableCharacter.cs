@@ -18,7 +18,7 @@ namespace Roguelike
             Title = title;
             ID = id;
 
-            Responses = new Dictionary<ConversationType, RandomList<string>>();
+            Responses = responses;
             
             // Adding Inventory Responses
             
@@ -72,6 +72,9 @@ namespace Roguelike
                     return responses.RollAndRemove();
                 case ConversationType.INVENTORY:
                     responses = Responses[ConversationType.INVENTORY];
+                    return responses.RollAndRemove();
+                case ConversationType.CONFESSION:
+                    responses = Responses[ConversationType.CONFESSION];
                     return responses.RollAndRemove();
                 default:
                     return null;
