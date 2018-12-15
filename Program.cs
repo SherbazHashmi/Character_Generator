@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace Roguelike
 {
@@ -191,13 +193,27 @@ namespace Roguelike
         }
 
         /// <summary>
-        /// TODO : Implement Slow Type
+        /// Simulates typing. Using thread timer approach. 
         /// </summary>
         /// <param name="input"></param>
 
         private static void SlowType(String input)
         {
-            _writer.WriteLine(input);
+            string[] words = input.Split(' ');
+            Task t = Task.Run(() =>
+            {
+                foreach (string word in words) {
+                    foreach (char letter in word) {
+                        _writer.Write(letter);
+                        Thread.Sleep(100);
+                    }
+
+                    _writer.Write(" ");
+                    Thread.Sleep(250);
+                }
+            });
+            t.Wait();
+            _writer.WriteLine("");
         }
         
         
